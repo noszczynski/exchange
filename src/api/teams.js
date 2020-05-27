@@ -1,46 +1,55 @@
-const LEAGUES_IDS = {
+export const LEAGUES_IDS = {
   ENGLAND: {
-    id: "0",
+    id: 0,
     name: "Premier League",
     photo:
       "https://www.transfermarkt.pl/images/logo/originals/gb1.png?lm=1521104656",
   },
   SPAIN: {
-    id: "1",
+    id: 1,
     name: "LaLiga Santander",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/9/92/LaLiga_Santander.svg",
   },
   DEUTSCHLAND: {
-    id: "2",
+    id: 2,
     name: "Bundesliga",
     photo:
       "https://cdn.freebiesupply.com/logos/large/2x/bundesliga-2-logo-png-transparent.png",
   },
   FRANCE: {
-    id: "3",
+    id: 3,
     name: "Ligue 1 Conforama",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ligue1.svg/1200px-Ligue1.svg.png",
   },
   ITALY: {
-    id: "4",
+    id: 4,
     name: "Serie A TIM",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/9/93/Serie_A_Logo_%28ab_2019%29.png",
   },
   NEDERLANDS: {
-    id: "5",
+    id: 5,
     name: "Eredivisie",
     photo:
       "https://europeanleagues.com/wp-content/uploads/EREDIVISIE_LOGO_560x560.png",
   },
 };
 
+export const COUNTRIES = {
+  ENGLAND: "ENGLAND",
+  SPAIN: "SPAIN",
+  DEUTSCHLAND: "DEUTSCHLAND",
+  FRANCE: "FRANCE",
+  ITALY: "ITALY",
+  NEDERLANDS: "NEDERLANDS",
+};
+
 const TEAMS = [
   {
-    id: "0",
-    leagueId: "0",
+    id: 0,
+    leagueId: 0,
     name: "Manchester City",
     shortName: "Man City",
     photo:
@@ -54,8 +63,8 @@ const TEAMS = [
     },
   },
   {
-    id: "1",
-    leagueId: "0",
+    id: 1,
+    leagueId: 0,
     name: "Liverpool",
     shortName: "Liv",
     photo:
@@ -69,8 +78,8 @@ const TEAMS = [
     },
   },
   {
-    id: "2",
-    leagueId: "1",
+    id: 2,
+    leagueId: 1,
     name: "FC Barcelona",
     shortName: "Barca",
     photo:
@@ -84,8 +93,8 @@ const TEAMS = [
     },
   },
   {
-    id: "3",
-    leagueId: "1",
+    id: 3,
+    leagueId: 1,
     name: "Real Madryt CF",
     shortName: "Real M",
     photo:
@@ -99,8 +108,8 @@ const TEAMS = [
     },
   },
   {
-    id: "4",
-    leagueId: "4",
+    id: 4,
+    leagueId: 4,
     name: "Juventus Turyn",
     shortName: "Juve",
     photo:
@@ -114,8 +123,8 @@ const TEAMS = [
     },
   },
   {
-    id: "5",
-    leagueId: "3",
+    id: 5,
+    leagueId: 3,
     name: "Paris Saint-Germain",
     shortName: "PSG",
     photo:
@@ -129,8 +138,8 @@ const TEAMS = [
     },
   },
   {
-    id: "6",
-    leagueId: "2",
+    id: 6,
+    leagueId: 2,
     name: "FC Bayern Monachium",
     shortName: "Bayern",
     photo:
@@ -144,8 +153,8 @@ const TEAMS = [
     },
   },
   {
-    id: "7",
-    leagueId: "1",
+    id: 7,
+    leagueId: 1,
     name: "Atlético Madryt",
     shortName: "Atlético",
     photo:
@@ -159,8 +168,8 @@ const TEAMS = [
     },
   },
   {
-    id: "8",
-    leagueId: "0",
+    id: 8,
+    leagueId: 0,
     name: "Tottenham Hotspur",
     shortName: "Spurs",
     photo:
@@ -174,8 +183,8 @@ const TEAMS = [
     },
   },
   {
-    id: "9",
-    leagueId: "4",
+    id: 9,
+    leagueId: 4,
     name: "Napoli",
     shortName: "Napoli",
     photo:
@@ -189,8 +198,8 @@ const TEAMS = [
     },
   },
   {
-    id: "10",
-    leagueId: "2",
+    id: 10,
+    leagueId: 2,
     name: "Borussia Dortmund",
     shortName: "BVB",
     photo:
@@ -204,8 +213,8 @@ const TEAMS = [
     },
   },
   {
-    id: "11",
-    leagueId: "4",
+    id: 11,
+    leagueId: 4,
     name: "Inter Mediolan",
     shortName: "Inter",
     photo:
@@ -219,8 +228,8 @@ const TEAMS = [
     },
   },
   {
-    id: "12",
-    leagueId: "0",
+    id: 12,
+    leagueId: 0,
     name: "Manchester United",
     shortName: "Man Und",
     photo:
@@ -234,8 +243,8 @@ const TEAMS = [
     },
   },
   {
-    id: "13",
-    leagueId: "4",
+    id: 13,
+    leagueId: 4,
     name: "Lazio Rzym",
     shortName: "Lazio",
     photo:
@@ -249,8 +258,8 @@ const TEAMS = [
     },
   },
   {
-    id: "14",
-    leagueId: "1",
+    id: 14,
+    leagueId: 1,
     name: "Valencia CF",
     shortName: "Valencia",
     photo:
@@ -264,8 +273,8 @@ const TEAMS = [
     },
   },
   {
-    id: "15",
-    leagueId: "0",
+    id: 15,
+    leagueId: 0,
     name: "Chelsea",
     shortName: "Chelsea",
     photo:
@@ -279,8 +288,8 @@ const TEAMS = [
     },
   },
   {
-    id: "16",
-    leagueId: "0",
+    id: 16,
+    leagueId: 0,
     name: "Arsenal",
     shortName: "Arsenal",
     photo:
@@ -294,8 +303,8 @@ const TEAMS = [
     },
   },
   {
-    id: "17",
-    leagueId: "2",
+    id: 17,
+    leagueId: 2,
     name: "RB Lipsk",
     shortName: "RB Lipsk",
     photo:
@@ -309,8 +318,8 @@ const TEAMS = [
     },
   },
   {
-    id: "18",
-    leagueId: "1",
+    id: 18,
+    leagueId: 1,
     name: "Real Betis Balompié",
     shortName: "Betis",
     photo:
@@ -324,8 +333,8 @@ const TEAMS = [
     },
   },
   {
-    id: "19",
-    leagueId: "2",
+    id: 19,
+    leagueId: 2,
     name: "Bayer 04 Leverkusen",
     shortName: "Bayer 04",
     photo:
@@ -339,8 +348,8 @@ const TEAMS = [
     },
   },
   {
-    id: "20",
-    leagueId: "1",
+    id: 20,
+    leagueId: 1,
     name: "Sevilla FC",
     shortName: "Sevilla",
     photo:
@@ -354,8 +363,8 @@ const TEAMS = [
     },
   },
   {
-    id: "21",
-    leagueId: "5",
+    id: 21,
+    leagueId: 5,
     name: "Ajax Amsterdam",
     shortName: "Ajax",
     photo:
@@ -369,8 +378,8 @@ const TEAMS = [
     },
   },
   {
-    id: "22",
-    leagueId: "4",
+    id: 22,
+    leagueId: 4,
     name: "AC Milan",
     shortName: "Milan",
     photo:
@@ -384,8 +393,8 @@ const TEAMS = [
     },
   },
   {
-    id: "23",
-    leagueId: "4",
+    id: 23,
+    leagueId: 4,
     name: "AS Roma",
     shortName: "Roma",
     photo:

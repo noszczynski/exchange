@@ -7,6 +7,7 @@ const setSelect = (select, value) => (dispatch) => {
     value,
   });
 };
+
 const setStats = (stat, value) => (dispatch) => {
   dispatch({
     type: actionTypes.SET_STATS,
@@ -14,12 +15,19 @@ const setStats = (stat, value) => (dispatch) => {
     value,
   });
 };
-const setStars = (a, b) => (dispatch) => {
+
+const setStars = (event, newValue) => (dispatch) => {
   dispatch({
     type: actionTypes.SET_STARS,
-    a,
-    b,
+    value: newValue,
   });
 };
 
-export { setSelect, setStats, setStars };
+const changeChecked = (set) => (dispatch) => {
+  dispatch({
+    type: actionTypes.CHANGE_CHECKED,
+    set,
+  });
+};
+
+export { setSelect, setStats, setStars, changeChecked };

@@ -1,24 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { setStars } from "../../redux/actions";
+import PropTypes from "prop-types";
 
-function ThumbComponent(props) {
-  return (
-    <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
-    </span>
-  );
-}
-
-function RangeSliderItem({ label, onChange }) {
-  const [value, setValue] = useState([4.5, 5]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+function RangeSliderItem({ label, STARS, setStars }) {
   return (
     <div>
       <Typography id="range-slider" gutterBottom>
@@ -28,13 +15,25 @@ function RangeSliderItem({ label, onChange }) {
         defaultValue={5}
         step={0.5}
         valueLabelDisplay="on"
-        onChange={handleChange}
+        onChange={setStars}
         min={1}
         max={5}
-        value={value}
+        value={STARS}
       />
     </div>
   );
 }
 
-export default RangeSliderItem;
+RangeSliderItem.propTypes = {
+  STARS: PropTypes.arrayOf(PropTypes.number),
+};
+
+RangeSliderItem.defaultProps = {
+  STARS: [],
+};
+
+const mapStateToProps = (appState) => ({
+  STARS: appState.STARS,
+});
+
+export default connect(mapStateToProps, { setStars })(RangeSliderItem);

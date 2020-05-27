@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { LEAGUES } from "../../../api/teams";
 import Rating from "../../Rating/Rating";
+import { changeChecked } from "../../../redux/actions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const Check = styled.div`
   color: forestgreen;
@@ -47,17 +50,21 @@ const Team = styled.div`
 `;
 
 function SelectTeam({
-  team: { id, leagueId, photo, stars, name, checked },
-  toggleCheck,
-  handleSetFilters,
+  team: { id, leagueId, photo, stars, name },
+  changeChecked,
+  CHECKED,
 }) {
-  const f = () => {
-    toggleCheck(id);
-    handleSetFilters();
+  const handleToggleCheck = () => {
+    if (CHECKED.has(id)) {
+      CHECKED.delete(id);
+    } else {
+      CHECKED.add(id);
+    }
+    changeChecked(new Set(CHECKED));
   };
 
   return (
-    <Team onClick={f} checked={checked}>
+    <Team onClick={handleToggleCheck} checked={CHECKED.has(id)}>
       <Logo>
         <img src={LEAGUES[leagueId].photo} alt="logo" />
       </Logo>
@@ -70,9 +77,17 @@ function SelectTeam({
       <RatingWrapper>
         <Rating rating={stars} />
       </RatingWrapper>
-      <Check>{checked && <span> &#10003; </span>}</Check>
+      <Check>{CHECKED.has(id) && <span> &#10003; </span>}</Check>
     </Team>
   );
 }
 
-export default SelectTeam;
+SelectTeam.propTypes = {
+  CHECKED: PropTypes.node.isRequired,
+};
+
+const mapStateToProps = (appState) => ({
+  CHECKED: appState.CHECKED,
+});
+
+export default connect(mapStateToProps, { changeChecked })(SelectTeam);

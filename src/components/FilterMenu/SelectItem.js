@@ -3,8 +3,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import green from "@material-ui/core/colors/green";
+import { connect } from "react-redux";
+import { setSelect } from "../../redux/actions";
+import PropTypes from "prop-types";
 
-function SelectItem({ label, checked }) {
+function SelectItem({ label, action, setSelect, LIGUE }) {
   const ColoredCheckbox = withStyles({
     root: {
       color: green[100],
@@ -15,9 +18,9 @@ function SelectItem({ label, checked }) {
     checked: {},
   })((props) => (
     <Checkbox
-      color="#9ef70b"
       value={label}
       inputProps={{ "aria-label": label }}
+      onChange={({ target: { checked } }) => setSelect(action, checked)}
       {...props}
     />
   ));
@@ -25,11 +28,25 @@ function SelectItem({ label, checked }) {
   return (
     <div>
       <FormControlLabel
-        control={<ColoredCheckbox checked={checked} name={label} />}
+        control={
+          <ColoredCheckbox checked={LIGUE && LIGUE[action]} name={label} />
+        }
         label={label}
       />
     </div>
   );
 }
 
-export default SelectItem;
+SelectItem.propTypes = {
+  LIGUE: PropTypes.object,
+};
+
+SelectItem.defaultProps = {
+  LIGUE: {},
+};
+
+const mapStateToProps = (appState) => ({
+  LIGUE: appState.LIGUE,
+});
+
+export default connect(mapStateToProps, { setSelect })(SelectItem);
