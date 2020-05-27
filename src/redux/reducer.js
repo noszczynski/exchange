@@ -1,65 +1,61 @@
 import * as actionTypes from "./actionTypes";
 import { INITIAL_STATE } from "../index";
-import {
-  addTeamsToCheck,
-  filterTeamsByStarRatio,
-  filterTeamsByStats,
-  generateIds,
-} from "../Utils/Utils";
+import { addTeamsToCheck, filterTeams, generateIds } from "../Utils/Utils";
 import { LEAGUES_IDS } from "../api/teams";
 
 export const appState = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.SET_LIGUE_SELECT: {
       const { select, value } = action;
-      let checkedSet; // new set for changes
 
-      const newValue = Object.assign({}, state.LIGUE);
-      newValue[select] = value;
+      const newLeague = Object.assign({}, state.LEAGUE);
+      newLeague[select] = value;
 
       if (select === "ALL") {
+        const newLeagueForAllOpt = value
+          ? {
+              ENGLAND: true,
+              SPAIN: true,
+              DEUTSCHLAND: true,
+              FRANCE: true,
+              ITALY: true,
+              NEDERLANDS: true,
+              ALL: true,
+            }
+          : {
+              ENGLAND: false,
+              SPAIN: false,
+              DEUTSCHLAND: false,
+              FRANCE: false,
+              ITALY: false,
+              NEDERLANDS: false,
+              ALL: false,
+            };
         return {
           ...state,
-          LIGUE: value
-            ? {
-                ENGLAND: true,
-                SPAIN: true,
-                DEUTSCHLAND: true,
-                FRANCE: true,
-                ITALY: true,
-                NEDERLANDS: true,
-                ALL: true,
-              }
-            : {
-                ENGLAND: false,
-                SPAIN: false,
-                DEUTSCHLAND: false,
-                FRANCE: false,
-                ITALY: false,
-                NEDERLANDS: false,
-                ALL: false,
-              },
-          CHECKED: value ? generateIds() : new Set(),
+          LEAGUE: newLeagueForAllOpt,
+          CHECKED: value
+            ? filterTeams(state.STATS, state.STARS, newLeagueForAllOpt)
+            : new Set(),
         };
-      } else {
-        checkedSet = addTeamsToCheck(
-          LEAGUES_IDS[select].id,
-          state.CHECKED,
-          value
-        );
       }
+
       return {
         ...state,
-        LIGUE: newValue,
-        CHECKED: new Set(checkedSet),
+        LEAGUE: newLeague,
+        CHECKED: filterTeams(state.STATS, state.STARS, newLeague),
       };
     }
     case actionTypes.SET_STATS: {
-      const { value, stat } = action;
+      const { stat, value } = action;
+
+      const newStats = Object.assign({}, state.STATS);
+      newStats[stat] = value;
+
       return {
         ...state,
-        STATS: value,
-        CHECKED: filterTeamsByStats(stat, value),
+        STATS: newStats,
+        CHECKED: filterTeams(newStats, state.STARS, state.LEAGUE),
       };
     }
     case actionTypes.SET_STARS: {
@@ -67,7 +63,7 @@ export const appState = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         STARS: value,
-        CHECKED: filterTeamsByStarRatio(value),
+        CHECKED: filterTeams(state.STATS, value, state.LEAGUE),
       };
     }
     case actionTypes.CHANGE_CHECKED: {
@@ -75,6 +71,14 @@ export const appState = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         CHECKED: action.set,
+      };
+    }
+    case actionTypes.SET_FILTER: {
+      const { STATS, STARS, LEAGUE } = state;
+      console.log(filterTeams(STATS, STARS, LEAGUE, generateIds()));
+      return {
+        ...state,
+        CHECKED: new Set(filterTeams(STATS, STARS, LEAGUE)),
       };
     }
     default:

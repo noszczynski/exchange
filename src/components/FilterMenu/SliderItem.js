@@ -16,7 +16,7 @@ function SliderItem({ action, label, setStats }) {
         defaultValue={80}
         step={1}
         valueLabelDisplay="on"
-        onChange={handleChange}
+        onChangeCommitted={handleChange}
         min={60}
         max={100}
       />

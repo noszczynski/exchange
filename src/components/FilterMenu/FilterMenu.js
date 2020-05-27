@@ -13,12 +13,12 @@ function FilterMenu() {
       <SelectItem action={COUNTRIES.FRANCE} label="Ligue 1 Conforama" />
       <SelectItem action={COUNTRIES.ITALY} label="Serie A" />
       <SelectItem action={COUNTRIES.NEDERLANDS} label="Eredivisie" />
-      <SelectItem action="ALL" label="Select/Unselect all" />
+      <SelectItem action={COUNTRIES.ALL} label="Select/Unselect all" />
 
-      <SliderItem action="attack" label="Min. Attack" />
-      <SliderItem action="support" label="Min. Support" />
-      <SliderItem action="defence" label="Min. Defence" />
-      <SliderItem action="sum" label="Min. Sum of statistics" />
+      <SliderItem action="ATK" label="Min. Attack" />
+      <SliderItem action="SUP" label="Min. Support" />
+      <SliderItem action="DEF" label="Min. Defence" />
+      <SliderItem action="SUM" label="Min. Sum of statistics" />
 
       <RangeSliderItem label="Stars Rating" />
     </div>

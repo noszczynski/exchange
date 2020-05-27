@@ -9,13 +9,13 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { LEAGUES } from "./api/teams";
 import MERGED_TEAMS from "./api/api";
-import { generateIds } from "./Utils/Utils";
+import { filterTeams, generateIds } from "./Utils/Utils";
 
 export const INITIAL_STATE = {
   LIGUES: LEAGUES,
   TEAMS: MERGED_TEAMS,
   CHECKED: generateIds(),
-  LIGUE: {
+  LEAGUE: {
     ENGLAND: true,
     SPAIN: true,
     DEUTSCHLAND: true,

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { setSelect } from "../../redux/actions";
 import PropTypes from "prop-types";
 
-function SelectItem({ label, action, setSelect, LIGUE }) {
+function SelectItem({ label, action, setSelect, LEAGUE }) {
   const ColoredCheckbox = withStyles({
     root: {
       color: green[100],
@@ -29,7 +29,7 @@ function SelectItem({ label, action, setSelect, LIGUE }) {
     <div>
       <FormControlLabel
         control={
-          <ColoredCheckbox checked={LIGUE && LIGUE[action]} name={label} />
+          <ColoredCheckbox checked={LEAGUE && LEAGUE[action]} name={label} />
         }
         label={label}
       />
@@ -38,15 +38,15 @@ function SelectItem({ label, action, setSelect, LIGUE }) {
 }
 
 SelectItem.propTypes = {
-  LIGUE: PropTypes.object,
+  LEAGUE: PropTypes.object,
 };
 
 SelectItem.defaultProps = {
-  LIGUE: {},
+  LEAGUE: {},
 };
 
 const mapStateToProps = (appState) => ({
-  LIGUE: appState.LIGUE,
+  LEAGUE: appState.LEAGUE,
 });
 
 export default connect(mapStateToProps, { setSelect })(SelectItem);

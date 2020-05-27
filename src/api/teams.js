@@ -4,36 +4,42 @@ export const LEAGUES_IDS = {
     name: "Premier League",
     photo:
       "https://www.transfermarkt.pl/images/logo/originals/gb1.png?lm=1521104656",
+    title: "ENGLAND",
   },
   SPAIN: {
     id: 1,
     name: "LaLiga Santander",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/9/92/LaLiga_Santander.svg",
+    title: "SPAIN",
   },
   DEUTSCHLAND: {
     id: 2,
     name: "Bundesliga",
     photo:
       "https://cdn.freebiesupply.com/logos/large/2x/bundesliga-2-logo-png-transparent.png",
+    title: "DEUTSCHLAND",
   },
   FRANCE: {
     id: 3,
     name: "Ligue 1 Conforama",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ligue1.svg/1200px-Ligue1.svg.png",
+    title: "FRANCE",
   },
   ITALY: {
     id: 4,
     name: "Serie A TIM",
     photo:
       "https://upload.wikimedia.org/wikipedia/commons/9/93/Serie_A_Logo_%28ab_2019%29.png",
+    title: "ITALY",
   },
   NEDERLANDS: {
     id: 5,
     name: "Eredivisie",
     photo:
       "https://europeanleagues.com/wp-content/uploads/EREDIVISIE_LOGO_560x560.png",
+    title: "NEDERLANDS",
   },
 };
 
@@ -44,6 +50,7 @@ export const COUNTRIES = {
   FRANCE: "FRANCE",
   ITALY: "ITALY",
   NEDERLANDS: "NEDERLANDS",
+  ALL: "ALL",
 };
 
 const TEAMS = [
@@ -56,10 +63,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA20/images/crest/10/light/10.webp",
     stars: "5.0",
     rating: {
-      attack: "87",
-      support: "86",
-      defence: "83",
-      sum: "85",
+      ATK: "87",
+      SUP: "86",
+      DEF: "83",
+      SUM: "85",
     },
   },
   {
@@ -71,10 +78,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA20/images/crest/10/light/9.webp",
     stars: "5.0",
     rating: {
-      attack: "87",
-      support: "83",
-      defence: "85",
-      sum: "86",
+      ATK: "87",
+      SUP: "83",
+      DEF: "85",
+      SUM: "86",
     },
   },
   {
@@ -86,10 +93,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA20/images/crest/10/light/241.webp",
     stars: "5.0",
     rating: {
-      attack: "88",
-      support: "85",
-      defence: "85",
-      sum: "86",
+      ATK: "88",
+      SUP: "85",
+      DEF: "85",
+      SUM: "86",
     },
   },
   {
@@ -101,10 +108,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA20/images/crest/10/light/243.webp",
     stars: "5.0",
     rating: {
-      attack: "85",
-      support: "87",
-      defence: "85",
-      sum: "86",
+      ATK: "85",
+      SUP: "87",
+      DEF: "85",
+      SUM: "86",
     },
   },
   {
@@ -116,10 +123,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/45.webp",
     stars: "5.0",
     rating: {
-      attack: "89",
-      support: "84",
-      defence: "85",
-      sum: "85",
+      ATK: "89",
+      SUP: "84",
+      DEF: "85",
+      SUM: "85",
     },
   },
   {
@@ -131,10 +138,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/73.webp",
     stars: "5.0",
     rating: {
-      attack: "88",
-      support: "84",
-      defence: "83",
-      sum: "85",
+      ATK: "88",
+      SUP: "84",
+      DEF: "83",
+      SUM: "85",
     },
   },
   {
@@ -146,10 +153,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/21.webp",
     stars: "5.0",
     rating: {
-      attack: "87",
-      support: "85",
-      defence: "81",
-      sum: "84",
+      ATK: "87",
+      SUP: "85",
+      DEF: "81",
+      SUM: "84",
     },
   },
   {
@@ -161,10 +168,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/240.webp",
     stars: "5.0",
     rating: {
-      attack: "81",
-      support: "83",
-      defence: "82",
-      sum: "83",
+      ATK: "81",
+      SUP: "83",
+      DEF: "82",
+      SUM: "83",
     },
   },
   {
@@ -176,10 +183,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA20/images/crest/10/light/18.webp",
     stars: "4.5",
     rating: {
-      attack: "85",
-      support: "82",
-      defence: "82",
-      sum: "82",
+      ATK: "85",
+      SUP: "82",
+      DEF: "82",
+      SUM: "82",
     },
   },
   {
@@ -191,10 +198,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/48.webp",
     stars: "4.5",
     rating: {
-      attack: "84",
-      support: "81",
-      defence: "81",
-      sum: "82",
+      ATK: "84",
+      SUP: "81",
+      DEF: "81",
+      SUM: "82",
     },
   },
   {
@@ -206,10 +213,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/22.webp",
     stars: "4.5",
     rating: {
-      attack: "83",
-      support: "83",
-      defence: "82",
-      sum: "82",
+      ATK: "83",
+      SUP: "83",
+      DEF: "82",
+      SUM: "82",
     },
   },
   {
@@ -221,10 +228,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/44.webp",
     stars: "4.5",
     rating: {
-      attack: "83",
-      support: "80",
-      defence: "86",
-      sum: "82",
+      ATK: "83",
+      SUP: "80",
+      DEF: "86",
+      SUM: "82",
     },
   },
   {
@@ -236,10 +243,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/11.webp",
     stars: "4.5",
     rating: {
-      attack: "83",
-      support: "81",
-      defence: "81",
-      sum: "81",
+      ATK: "83",
+      SUP: "81",
+      DEF: "81",
+      SUM: "81",
     },
   },
   {
@@ -251,10 +258,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/46.webp",
     stars: "4.5",
     rating: {
-      attack: "82",
-      support: "81",
-      defence: "80",
-      sum: "81",
+      ATK: "82",
+      SUP: "81",
+      DEF: "80",
+      SUM: "81",
     },
   },
   {
@@ -266,10 +273,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/461.webp",
     stars: "4.5",
     rating: {
-      attack: "81",
-      support: "81",
-      defence: "81",
-      sum: "81",
+      ATK: "81",
+      SUP: "81",
+      DEF: "81",
+      SUM: "81",
     },
   },
   {
@@ -281,10 +288,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/5.webp",
     stars: "4.5",
     rating: {
-      attack: "80",
-      support: "84",
-      defence: "81",
-      sum: "81",
+      ATK: "80",
+      SUP: "84",
+      DEF: "81",
+      SUM: "81",
     },
   },
   {
@@ -296,10 +303,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/1.webp",
     stars: "4.5",
     rating: {
-      attack: "84",
-      support: "82",
-      defence: "78",
-      sum: "80",
+      ATK: "84",
+      SUP: "82",
+      DEF: "78",
+      SUM: "80",
     },
   },
   {
@@ -311,10 +318,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/112172.webp",
     stars: "4.5",
     rating: {
-      attack: "81",
-      support: "81",
-      defence: "79",
-      sum: "80",
+      ATK: "81",
+      SUP: "81",
+      DEF: "79",
+      SUM: "80",
     },
   },
   {
@@ -326,10 +333,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/449.webp",
     stars: "4.5",
     rating: {
-      attack: "81",
-      support: "81",
-      defence: "78",
-      sum: "80",
+      ATK: "81",
+      SUP: "81",
+      DEF: "78",
+      SUM: "80",
     },
   },
   {
@@ -341,10 +348,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/32.webp",
     stars: "4.5",
     rating: {
-      attack: "80",
-      support: "80",
-      defence: "79",
-      sum: "80",
+      ATK: "80",
+      SUP: "80",
+      DEF: "79",
+      SUM: "80",
     },
   },
   {
@@ -356,10 +363,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/481.webp",
     stars: "4.5",
     rating: {
-      attack: "79",
-      support: "81",
-      defence: "80",
-      sum: "80",
+      ATK: "79",
+      SUP: "81",
+      DEF: "80",
+      SUM: "80",
     },
   },
   {
@@ -371,10 +378,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/245.webp",
     stars: "4.5",
     rating: {
-      attack: "79",
-      support: "81",
-      defence: "80",
-      sum: "80",
+      ATK: "79",
+      SUP: "81",
+      DEF: "80",
+      SUM: "80",
     },
   },
   {
@@ -386,10 +393,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/47.webp",
     stars: "4.5",
     rating: {
-      attack: "85",
-      support: "78",
-      defence: "79",
-      sum: "79",
+      ATK: "85",
+      SUP: "78",
+      DEF: "79",
+      SUM: "79",
     },
   },
   {
@@ -401,10 +408,10 @@ const TEAMS = [
       "https://www.fifaindex.com/static/FIFA19/images/crest/10/light/52.webp",
     stars: "4.5",
     rating: {
-      attack: "85",
-      support: "78",
-      defence: "79",
-      sum: "79",
+      ATK: "85",
+      SUP: "78",
+      DEF: "79",
+      SUM: "79",
     },
   },
 ];

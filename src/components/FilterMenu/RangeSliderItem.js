@@ -6,6 +6,12 @@ import { setStars } from "../../redux/actions";
 import PropTypes from "prop-types";
 
 function RangeSliderItem({ label, STARS, setStars }) {
+  const handleSliderChange = (event, value) => {
+    if (value !== STARS) {
+      setStars(value);
+    }
+  };
+
   return (
     <div>
       <Typography id="range-slider" gutterBottom>
@@ -15,7 +21,7 @@ function RangeSliderItem({ label, STARS, setStars }) {
         defaultValue={5}
         step={0.5}
         valueLabelDisplay="on"
-        onChange={setStars}
+        onChange={handleSliderChange}
         min={1}
         max={5}
         value={STARS}

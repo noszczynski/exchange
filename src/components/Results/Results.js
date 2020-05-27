@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 600px;
   margin: 0 auto;
   button {
     padding: 5px 10px;
@@ -62,16 +61,10 @@ function Results({ CHECKED }) {
   );
 }
 Results.propTypes = {
-  // TEAMS: PropTypes.arrayOf(PropTypes.object),
   CHECKED: PropTypes.node.isRequired,
 };
 
-Results.defaultProps = {
-  // TEAMS: [],
-};
-
 const mapStateToProps = (appState) => ({
-  // TEAMS: appState.TEAMS,
   CHECKED: appState.CHECKED,
 });
 

@@ -16,7 +16,7 @@ const setStats = (stat, value) => (dispatch) => {
   });
 };
 
-const setStars = (event, newValue) => (dispatch) => {
+const setStars = (newValue) => (dispatch) => {
   dispatch({
     type: actionTypes.SET_STARS,
     value: newValue,
@@ -30,4 +30,11 @@ const changeChecked = (set) => (dispatch) => {
   });
 };
 
-export { setSelect, setStats, setStars, changeChecked };
+const setFilter = () => (dispatch) => {
+  console.log(`filter`);
+  dispatch({
+    type: actionTypes.SET_FILTER,
+  });
+};
+
+export { setSelect, setStats, setStars, changeChecked, setFilter };
