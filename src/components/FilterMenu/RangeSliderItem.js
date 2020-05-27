@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
-import withStyles from "@material-ui/core/styles/withStyles";
-import green from "@material-ui/core/colors/green";
 
 function ThumbComponent(props) {
   return (

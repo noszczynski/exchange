@@ -9,6 +9,28 @@ const Check = styled.div`
   font-size: 18px;
 `;
 
+const Logo = styled.div`
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+
+  img {
+    transition: transform 0.2s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+const NameWrapper = styled.div`
+  width: 200px;
+`;
+
+const RatingWrapper = styled.div`
+  width: 100px;
+  padding: 0 4px;
+`;
+
 const Team = styled.div`
   display: flex;
   flex-direction: row;
@@ -18,47 +40,36 @@ const Team = styled.div`
   height: 48px;
   background-color: ${({ checked }) =>
     checked ? "rgba(157,248,12,0.38)" : "transparent"};
-  .logo {
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
-  img {
-    transition: transform 0.2s ease;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+
   &:hover div:nth-child(2) img {
     transform: scale(0.9);
-  }
-  & > div {
-    &:nth-child(3) {
-      width: 200px;
-    }
-    &:nth-child(4) {
-      width: 100px;
-      padding: 0 4px;
-    }
   }
 `;
 
 function SelectTeam({
   team: { id, leagueId, photo, stars, name, checked },
   toggleCheck,
+  handleSetFilters,
 }) {
+  const f = () => {
+    toggleCheck(id);
+    handleSetFilters();
+  };
+
   return (
-    <Team onClick={() => toggleCheck(id)} checked={checked}>
-      <div className="logo">
+    <Team onClick={f} checked={checked}>
+      <Logo>
         <img src={LEAGUES[leagueId].photo} alt="logo" />
-      </div>
-      <div className="logo">
+      </Logo>
+      <Logo>
         <img src={photo} alt="logo" />
-      </div>
-      <div>
+      </Logo>
+      <NameWrapper>
         <p>{name}</p>
-      </div>
-      <Rating rating={stars} />
+      </NameWrapper>
+      <RatingWrapper>
+        <Rating rating={stars} />
+      </RatingWrapper>
       <Check>{checked && <span> &#10003; </span>}</Check>
     </Team>
   );

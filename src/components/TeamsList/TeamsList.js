@@ -7,11 +7,16 @@ const StyledTeamsList = styled.div`
   flex-direction: column;
 `;
 
-function TeamsList({ list, toggleCheck }) {
+function TeamsList({ list, toggleCheck, handleSetFilters }) {
   return (
     <StyledTeamsList>
       {list.map((team) => (
-        <SelectTeam key={team.name} team={team} toggleCheck={toggleCheck} />
+        <SelectTeam
+          key={team.name}
+          team={team}
+          toggleCheck={toggleCheck}
+          handleSetFilters={handleSetFilters}
+        />
       ))}
     </StyledTeamsList>
   );

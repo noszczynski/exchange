@@ -4,7 +4,7 @@ import SelectArea from "./components/SelectArea/SelectArea";
 import TeamsList from "./components/TeamsList/TeamsList";
 import styled from "styled-components";
 import Results from "./components/Results/Results";
-import mergedTeams from "./api/api";
+import MERGED_TEAMS from "./api/api";
 
 const Container = styled.div`
   display: grid;
@@ -34,6 +34,26 @@ export const LengthOfChecked = (arr) => {
 function App() {
   const [checkList, setCheckList] = useState([]);
   const [disableButton, setDisableButton] = useState(false);
+  const [filters, setFilters] = useState({
+    LIGUE: {
+      ENGLAND: false,
+      SPAIN: false,
+      DEUTCHLAND: false,
+      FRANCE: false,
+      ITALY: false,
+      NEDERLANDS: false,
+    },
+    ATK: 80,
+    SUP: 80,
+    DEF: 80,
+    SUM: 80,
+    STARS: [4.5, 5],
+  });
+
+  const handleSetFilters = (action, value) => {
+    console.log(action);
+    console.log(value);
+  };
 
   const toggleCheck = (id) => {
     if (checkList[id].checked) {
@@ -54,17 +74,21 @@ function App() {
   };
 
   useEffect(() => {
-    setCheckList(setCheckedPropertiesToArr(mergedTeams));
+    setCheckList(setCheckedPropertiesToArr(MERGED_TEAMS));
   }, []);
 
   return (
     <div className="App">
       <Container>
         <SelectTeamList>
-          <TeamsList list={checkList} toggleCheck={toggleCheck} />
+          <TeamsList
+            list={checkList}
+            toggleCheck={toggleCheck}
+            handleSetFilters={handleSetFilters}
+          />
         </SelectTeamList>
         <Others>
-          <FilterMenu />
+          <FilterMenu handleSetFilters={handleSetFilters} />
           <Results disbleButton={disableButton} />
         </Others>
       </Container>

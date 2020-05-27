@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import mergedTeams from "../../api/api";
+import MERGED_TEAMS from "../../api/api";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const StyledInput = styled.input`
 `;
 
 export const getRandomTeamNumber = () =>
-  Math.floor(Math.random() * mergedTeams.length);
+  Math.floor(Math.random() * MERGED_TEAMS.length);
 
 function Results() {
   const [firstInput, setFirstValue] = useState({ name: "" });
@@ -34,16 +34,16 @@ function Results() {
 
   const random = () => {
     let firstRand = getRandomTeamNumber();
-    while (!mergedTeams[firstRand].checked) {
+    while (!MERGED_TEAMS[firstRand].checked) {
       firstRand = getRandomTeamNumber();
     }
     let secondRand = getRandomTeamNumber();
-    while (firstRand === secondRand || !mergedTeams[secondRand].checked) {
+    while (firstRand === secondRand || !MERGED_TEAMS[secondRand].checked) {
       secondRand = getRandomTeamNumber();
     }
 
-    setFirstValue(mergedTeams[firstRand]);
-    setSecondValue(mergedTeams[secondRand]);
+    setFirstValue(MERGED_TEAMS[firstRand]);
+    setSecondValue(MERGED_TEAMS[secondRand]);
   };
 
   return (

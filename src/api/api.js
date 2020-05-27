@@ -1,4 +1,4 @@
-import { TEAMS as ChampionsLeagueTeams } from "./teams";
+import { TEAMS } from "./teams";
 
-const mergedTeams = [...ChampionsLeagueTeams];
-export default mergedTeams;
+const MERGED_TEAMS = [...TEAMS];
+export default MERGED_TEAMS;
