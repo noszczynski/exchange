@@ -9,7 +9,6 @@ export const generateIds = () => {
 
 export const filterTeams = (newStats, ratio, league, set = new Set()) => {
   const [min, max] = ratio;
-  console.log(league);
 
   MERGED_TEAMS.forEach(({ name, stars, rating, id, leagueId }) => {
     if (

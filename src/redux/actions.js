@@ -31,7 +31,6 @@ const changeChecked = (set) => (dispatch) => {
 };
 
 const setFilter = () => (dispatch) => {
-  console.log(`filter`);
   dispatch({
     type: actionTypes.SET_FILTER,
   });

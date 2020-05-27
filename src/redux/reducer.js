@@ -75,7 +75,6 @@ export const appState = (state = INITIAL_STATE, action) => {
     }
     case actionTypes.SET_FILTER: {
       const { STATS, STARS, LEAGUE } = state;
-      console.log(filterTeams(STATS, STARS, LEAGUE, generateIds()));
       return {
         ...state,
         CHECKED: new Set(filterTeams(STATS, STARS, LEAGUE)),
