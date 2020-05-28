@@ -6,11 +6,12 @@ import Results from "./components/Results/Results";
 import { setFilter } from "./redux/actions";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import Scenario from "./components/Scenario/Scenario";
 
 const Container = styled.div`
   display: grid;
-  grid-template-areas: "select filter";
-  grid-template-columns: ${({ width }) => (width ? 600 : 450)}px 1fr;
+  grid-template-areas: "select filter scenario";
+  grid-template-columns: ${({ width }) => (width ? 600 : 450)}px 1fr 450px;
 `;
 
 const SelectTeamList = styled.div`
@@ -42,15 +43,19 @@ const StyledShowButton = styled.div`
   }
 `;
 
-const Others = styled.div`
+const Filters = styled.div`
   grid-area: filter;
   padding: 50px 15px;
   max-width: 600px;
   margin: 0 auto;
 `;
 
+const ScenarioList = styled.div`
+  //
+`;
+
 function App({ setFilter }) {
-  const [statsVisibility, setStatsVisible] = useState(true);
+  const [statsVisibility, setStatsVisible] = useState(false);
 
   useEffect(() => setFilter(), []);
 
@@ -60,7 +65,7 @@ function App({ setFilter }) {
         <SelectTeamList>
           <TeamsList statsVisibility={statsVisibility} />
         </SelectTeamList>
-        <Others>
+        <Filters>
           <StyledShowButton>
             <Button
               variant="contained"
@@ -71,7 +76,10 @@ function App({ setFilter }) {
           </StyledShowButton>
           <FilterMenu />
           <Results />
-        </Others>
+        </Filters>
+        <ScenarioList>
+          <Scenario />
+        </ScenarioList>
       </Container>
     </div>
   );
