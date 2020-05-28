@@ -49,10 +49,34 @@ const Team = styled.div`
   }
 `;
 
+const StatsWrapper = styled.div`
+  padding: 0 4px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Stat = styled.div`
+  padding: 3px 6px;
+  color: #fff;
+  background-color: ${({ color }) => color};
+  border-radius: 4px;
+  margin-right: 4px;
+  font-size: 12px;
+  display: block;
+`;
+
 function SelectTeam({
-  team: { id, leagueId, photo, stars, name },
+  team: {
+    id,
+    leagueId,
+    photo,
+    stars,
+    name,
+    rating: { ATK, SUP, DEF, SUM },
+  },
   changeChecked,
   CHECKED,
+  showStats,
 }) {
   const handleToggleCheck = () => {
     if (CHECKED.has(id)) {
@@ -74,6 +98,58 @@ function SelectTeam({
       <NameWrapper>
         <p>{name}</p>
       </NameWrapper>
+      {showStats && (
+        <StatsWrapper>
+          <Stat
+            color={
+              ATK >= 80
+                ? "forestgreen"
+                : ATK >= 70
+                ? "yellowgreen"
+                : "indianred"
+            }
+            title="Attack"
+          >
+            {ATK}
+          </Stat>
+          <Stat
+            color={
+              SUP >= 80
+                ? "forestgreen"
+                : SUP >= 70
+                ? "yellowgreen"
+                : "indianred"
+            }
+            title="Support"
+          >
+            {SUP}
+          </Stat>
+          <Stat
+            color={
+              DEF >= 80
+                ? "forestgreen"
+                : DEF >= 70
+                ? "yellowgreen"
+                : "indianred"
+            }
+            title="Defence"
+          >
+            {DEF}
+          </Stat>
+          <Stat
+            color={
+              SUM >= 80
+                ? "forestgreen"
+                : SUM >= 70
+                ? "yellowgreen"
+                : "indianred"
+            }
+            title="Sum"
+          >
+            {SUM}
+          </Stat>
+        </StatsWrapper>
+      )}
       <RatingWrapper>
         <Rating rating={stars} />
       </RatingWrapper>

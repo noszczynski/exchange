@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FilterMenu from "./components/FilterMenu/FilterMenu";
 import TeamsList from "./components/TeamsList/TeamsList";
 import styled from "styled-components";
 import Results from "./components/Results/Results";
 import { setFilter } from "./redux/actions";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
 
 const Container = styled.div`
   display: grid;
   grid-template-areas: "select filter";
-  grid-template-columns: 440px 1fr;
+  grid-template-columns: ${({ width }) => (width ? 600 : 450)}px 1fr;
 `;
 
 const SelectTeamList = styled.div`
@@ -33,6 +34,14 @@ const SelectTeamList = styled.div`
   }
 `;
 
+const StyledShowButton = styled.div`
+  padding-bottom: 15px;
+  button {
+    background-color: forestgreen;
+    color: #fff;
+  }
+`;
+
 const Others = styled.div`
   grid-area: filter;
   padding: 50px 15px;
@@ -41,14 +50,25 @@ const Others = styled.div`
 `;
 
 function App({ setFilter }) {
+  const [statsVisibility, setStatsVisible] = useState(true);
+
   useEffect(() => setFilter(), []);
+
   return (
     <div className="App">
-      <Container>
+      <Container width={statsVisibility}>
         <SelectTeamList>
-          <TeamsList />
+          <TeamsList statsVisibility={statsVisibility} />
         </SelectTeamList>
         <Others>
+          <StyledShowButton>
+            <Button
+              variant="contained"
+              onClick={() => setStatsVisible(!statsVisibility)}
+            >
+              Show stats
+            </Button>
+          </StyledShowButton>
           <FilterMenu />
           <Results />
         </Others>

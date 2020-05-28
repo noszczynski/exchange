@@ -24,6 +24,11 @@ const InputWrapper = styled.div`
 const StyledInput = styled.input`
   padding: 5px 10px;
   font-size: 18px;
+  width: 300px;
+`;
+
+const Margin = styled.span`
+  padding: 0 20px;
 `;
 
 export const getRandomTeamNumber = () =>
@@ -54,7 +59,7 @@ function Results({ CHECKED }) {
       <button onClick={random}>Random</button>
       <InputWrapper>
         <StyledInput value={firstInput.name} disabled />
-        VS
+        <Margin>VS</Margin>
         <StyledInput value={secondInput.name} disabled />
       </InputWrapper>
     </Wrapper>
