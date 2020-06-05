@@ -1,88 +1,75 @@
 import React, { useEffect, useState } from "react";
-import FilterMenu from "./components/FilterMenu/FilterMenu";
-import TeamsList from "./components/TeamsList/TeamsList";
-import styled from "styled-components";
-import Results from "./components/Results/Results";
-import { setFilter } from "./redux/actions";
+import { getLatestExchange } from "./api/api";
+import { roundNumberToTwoDecimal } from "./Utils/Utils";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
-import Scenario from "./components/Scenario/Scenario";
+import { addTransaction } from "./redux/actions";
+import Transaction from "./components/Transaction/Transaction";
+import styled from "styled-components";
 
-const Container = styled.div`
-  display: grid;
-  grid-template-areas: "select filter scenario";
-  grid-template-columns: ${({ width }) => (width ? 600 : 450)}px 1fr 450px;
+const AppWrapper = styled.div`
+  padding: 25px;
 `;
 
-const SelectTeamList = styled.div`
-  grid-area: select;
-  height: 100vh;
-  overflow: hidden auto;
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color: #f5f5f5;
-  }
-  &::-webkit-scrollbar {
-    width: 8px;
-    background-color: #f5f5f5;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-    background-color: #2e7d32;
-  }
+const TransactionsWrapper = styled.div`
+  padding: 25px 0;
 `;
 
-const StyledShowButton = styled.div`
-  padding-bottom: 15px;
-  button {
-    background-color: forestgreen;
-    color: #fff;
-  }
-`;
+function App({ transactions, addTransaction }) {
+  const [EURToPLN, setEURtoPLNRate] = useState(0);
+  const [PLNtoEUR, setPLNtoEURRate] = useState(0);
+  const [newTransactionName, setTransactionName] = useState("");
+  const [newTransactionAmount, setTransactionAmount] = useState(0);
+  const [transactionList, setTransactionList] = useState([]);
 
-const Filters = styled.div`
-  grid-area: filter;
-  padding: 50px 15px;
-  max-width: 600px;
-  margin: 0 auto;
-`;
+  useEffect(() => {
+    getLatestExchange().then(({ conversion_rates: { PLN } }) => {
+      setEURtoPLNRate(roundNumberToTwoDecimal(PLN));
+      setPLNtoEURRate(roundNumberToTwoDecimal(1 / PLN));
+    });
+  }, []);
 
-const ScenarioList = styled.div`
-  //
-`;
-
-function App({ setFilter }) {
-  const [statsVisibility, setStatsVisible] = useState(false);
-
-  useEffect(() => setFilter(), []);
+  useEffect(() => {
+    setTransactionList(transactions);
+  }, [transactions]);
 
   return (
-    <div className="App">
-      <Container width={statsVisibility}>
-        <SelectTeamList>
-          <TeamsList statsVisibility={statsVisibility} />
-        </SelectTeamList>
-        <Filters>
-          <StyledShowButton>
-            <Button
-              variant="contained"
-              onClick={() => setStatsVisible(!statsVisibility)}
-            >
-              Show stats
-            </Button>
-          </StyledShowButton>
-          <FilterMenu />
-          <Results />
-        </Filters>
-        <ScenarioList>
-          <Scenario />
-        </ScenarioList>
-      </Container>
-    </div>
+    <AppWrapper>
+      <h2>Exchange EUR to PLN</h2>
+      <h3>1 EURO = {EURToPLN} PLN</h3>
+      <h3>1 PLN = {PLNtoEUR} EURO</h3>
+
+      <div>
+        <h2>New Transaction</h2>
+        <input
+          name="name"
+          value={newTransactionName}
+          onChange={(e) => setTransactionName(e.target.value)}
+        />
+        <input
+          type="number"
+          name="amount"
+          value={newTransactionAmount}
+          onChange={(e) => setTransactionAmount(e.target.value)}
+        />
+        <button
+          onClick={() =>
+            addTransaction(newTransactionName, newTransactionAmount)
+          }
+        >
+          add transaction
+        </button>
+        <TransactionsWrapper>
+          {transactionList.map((t, index) => (
+            <Transaction key={index} transaction={t} />
+          ))}
+        </TransactionsWrapper>
+      </div>
+    </AppWrapper>
   );
 }
 
-export default connect(null, { setFilter })(App);
+const mapStateToProps = (appState) => ({
+  transactions: appState.transactions,
+});
+
+export default connect(mapStateToProps, { addTransaction })(App);

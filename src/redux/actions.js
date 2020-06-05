@@ -1,39 +1,18 @@
 import * as actionTypes from "./actionTypes";
 
-const setSelect = (select, value) => (dispatch) => {
+const addTransaction = (name, amount) => (dispatch) => {
   dispatch({
-    type: actionTypes.SET_LIGUE_SELECT,
-    select,
-    value,
+    type: actionTypes.ADD_NEW_TRANSACTION,
+    name,
+    amount,
   });
 };
 
-const setStats = (stat, value) => (dispatch) => {
+const removeTransaction = (id) => (dispatch) => {
   dispatch({
-    type: actionTypes.SET_STATS,
-    stat,
-    value,
+    type: actionTypes.REMOVE_TRANSACTION,
+    id,
   });
 };
 
-const setStars = (newValue) => (dispatch) => {
-  dispatch({
-    type: actionTypes.SET_STARS,
-    value: newValue,
-  });
-};
-
-const changeChecked = (set) => (dispatch) => {
-  dispatch({
-    type: actionTypes.CHANGE_CHECKED,
-    set,
-  });
-};
-
-const setFilter = () => (dispatch) => {
-  dispatch({
-    type: actionTypes.SET_FILTER,
-  });
-};
-
-export { setSelect, setStats, setStars, changeChecked, setFilter };
+export { addTransaction, removeTransaction };
