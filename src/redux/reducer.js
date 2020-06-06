@@ -14,9 +14,41 @@ export const appState = (state = INITIAL_STATE, action) => {
         id: generateRandomId(),
       });
 
-      return {
+      const endValue = {
         ...state,
         transactions: [...cloneDeep(newTransactions)],
+      };
+
+      localStorage.setItem("state", JSON.stringify(endValue));
+      return endValue;
+    }
+
+    case actionTypes.REMOVE_TRANSACTION: {
+      const newTransactions = state.transactions;
+
+      const index = newTransactions.indexOf(
+        newTransactions.find((item) => {
+          if (action.id === item.id) {
+            return item;
+          }
+        })
+      );
+
+      if (index !== -1) newTransactions.splice(index, 1);
+
+      const endValue = {
+        ...state,
+        transactions: [...cloneDeep(newTransactions)],
+      };
+
+      localStorage.setItem("state", JSON.stringify(endValue));
+      return endValue;
+    }
+
+    case actionTypes.SET_EXCHANGE: {
+      return {
+        ...state,
+        euroExchangeRate: action.amount,
       };
     }
 

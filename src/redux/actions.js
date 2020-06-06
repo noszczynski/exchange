@@ -1,6 +1,8 @@
 import * as actionTypes from "./actionTypes";
 
-const addTransaction = (name, amount) => (dispatch) => {
+const addTransaction = (name = "Blank transaction", amount = 0) => (
+  dispatch
+) => {
   dispatch({
     type: actionTypes.ADD_NEW_TRANSACTION,
     name,
@@ -15,4 +17,11 @@ const removeTransaction = (id) => (dispatch) => {
   });
 };
 
-export { addTransaction, removeTransaction };
+const setExchange = (amount) => (dispatch) => {
+  dispatch({
+    type: actionTypes.SET_EXCHANGE,
+    amount,
+  });
+};
+
+export { addTransaction, removeTransaction, setExchange };

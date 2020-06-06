@@ -7,20 +7,23 @@ import { appState } from "./redux/reducer";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { generateRandomId } from "./Utils/Utils";
 
 export const INITIAL_STATE = {
-  transactions: [
-    {
-      name: "[NAZWA NAZWA]",
-      amount: 34.22,
-      id: generateRandomId(),
-    },
-  ],
+  transactions: [],
+  euroExchangeRate: 0,
+};
+
+const applyInitialState = () => {
+  const local = JSON.parse(localStorage.getItem("state"));
+  return local ? local : INITIAL_STATE;
 };
 
 const rootReducer = appState;
-const store = createStore(rootReducer, INITIAL_STATE, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  applyInitialState(),
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(
   <React.StrictMode>
