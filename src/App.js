@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getLatestExchange } from "./api/api";
-import { getSumOfAmounts, roundNumberToTwoDecimal } from "./Utils/Utils";
+import {
+  findMaxTransaction,
+  getSumOfAmounts,
+  roundNumberToTwoDecimal,
+} from "./Utils/Utils";
 import { connect } from "react-redux";
 import { addTransaction, setExchange } from "./redux/actions";
 import Transaction from "./components/Transaction/Transaction";
@@ -25,7 +29,7 @@ const ButtonsWrapper = styled.div`
   }
 `;
 
-const NewTransactionWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: cornflowerblue;
@@ -46,6 +50,11 @@ const NewTransactionWrapper = styled.div`
   }
   button {
     cursor: pointer;
+    &:disabled {
+      background-color: #4365a0;
+      color: #fff;
+      cursor: no-drop;
+    }
   }
   p,
   h4 {
@@ -64,29 +73,11 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
   const [newTransactionAmount, setTransactionAmount] = useState("");
   const [transactionList, setTransactionList] = useState([]);
   const [sum, setSum] = useState(0);
-  const [maxTransaction, setMaxTransaction] = useState({
-    name: "",
-    amount: 0,
-    id: 0,
-  });
+  const [maxTransaction, setMaxTransaction] = useState({});
 
   const clear = () => {
     setTransactionName("");
     setTransactionAmount("");
-  };
-
-  const setMax = (arr = []) => {
-    let max = 0;
-    let index = -1;
-
-    arr.forEach((transaction, i) => {
-      if (transaction.amount > max) {
-        max = transaction.amount;
-        index = i;
-      }
-    });
-
-    if (index) setMaxTransaction(transactions[index]);
   };
 
   const handleSetSum = () => {
@@ -104,30 +95,35 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
   useEffect(() => {
     setTransactionList(transactions);
     handleSetSum();
-    setMax(transactions);
+    setMaxTransaction(findMaxTransaction(transactions));
   }, [transactions, euroExchangeRate]);
 
   return (
     <AppWrapper>
-      <div>
-        <p>Exchange EUR to PLN</p>
+      <Wrapper>
+        <h1>Exchange EUR to PLN</h1>
         <p>1 EURO = {euroExchangeRate} PLN</p>
-      </div>
-      <NewTransactionWrapper>
+      </Wrapper>
+      <Wrapper>
         <h4>
           Sum of all transactions: <span>{sum} PLN</span>
         </h4>
-        <h4>Max transaction: </h4>
-        <p>
-          name: <span>{maxTransaction && maxTransaction.name}</span>
-        </p>
-        <p>
-          amount:&nbsp;
-          <span>{maxTransaction && maxTransaction.amount} PLN</span>
-        </p>
-      </NewTransactionWrapper>
-      <NewTransactionWrapper>
-        <p>New Transaction</p>
+        {transactions && transactions.length ? (
+          <>
+            <h4>Max transaction: </h4>
+            <p>
+              name: &nbsp;
+              <span>{maxTransaction && maxTransaction.name}</span>
+            </p>
+            <p>
+              amount:&nbsp;
+              <span>{maxTransaction && maxTransaction.amount} PLN</span>
+            </p>
+          </>
+        ) : null}
+      </Wrapper>
+      <Wrapper>
+        <p>Add new transaction</p>
         <input
           name="name"
           value={newTransactionName}
@@ -146,12 +142,13 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
             onClick={() =>
               addTransaction(newTransactionName, newTransactionAmount)
             }
+            disabled={newTransactionName === "" || newTransactionAmount === ""}
           >
             ADD
           </button>
           <button onClick={clear}>CLEAR</button>
         </ButtonsWrapper>
-      </NewTransactionWrapper>
+      </Wrapper>
       <TransactionsWrapper>
         {transactionList.map((t, index) => (
           <Transaction key={index} transaction={t} />

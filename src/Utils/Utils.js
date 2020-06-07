@@ -9,3 +9,12 @@ export const generateRandomId = () => {
 export const getSumOfAmounts = (arr = []) => {
   return arr.reduce((sum, { amount }) => sum + Number(amount), 0);
 };
+
+export const findMaxTransaction = (arr = []) => {
+  const MAX = Math.max.apply(
+    Math,
+    arr.map((o) => o.amount)
+  );
+
+  return arr.find((item) => item.amount === MAX && item);
+};
