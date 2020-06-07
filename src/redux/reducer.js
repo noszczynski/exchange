@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import { INITIAL_STATE } from "../index";
 import { cloneDeep } from "lodash";
-import { generateRandomId } from "../Utils/Utils";
+import { generateRandomId, roundNumberToTwoDecimal } from "../Utils/Utils";
 
 export const appState = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -10,7 +10,7 @@ export const appState = (state = INITIAL_STATE, action) => {
 
       newTransactions.push({
         name: action.name,
-        amount: action.amount,
+        amount: roundNumberToTwoDecimal(action.amount),
         id: generateRandomId(),
       });
 

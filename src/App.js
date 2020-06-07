@@ -80,12 +80,6 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
     setTransactionAmount("");
   };
 
-  const handleSetSum = () => {
-    setSum(
-      roundNumberToTwoDecimal(getSumOfAmounts(transactions) * euroExchangeRate)
-    );
-  };
-
   useEffect(() => {
     getLatestExchange().then(({ conversion_rates: { PLN } }) => {
       setExchange(roundNumberToTwoDecimal(PLN));
@@ -94,8 +88,10 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
 
   useEffect(() => {
     setTransactionList(transactions);
-    handleSetSum();
     setMaxTransaction(findMaxTransaction(transactions));
+    setSum(
+      roundNumberToTwoDecimal(getSumOfAmounts(transactions) * euroExchangeRate)
+    );
   }, [transactions, euroExchangeRate]);
 
   return (
@@ -117,7 +113,9 @@ function App({ transactions, addTransaction, euroExchangeRate, setExchange }) {
             </p>
             <p>
               amount:&nbsp;
-              <span>{maxTransaction && maxTransaction.amount} PLN</span>
+              <span>
+                {maxTransaction && maxTransaction.amount * euroExchangeRate} PLN
+              </span>
             </p>
           </>
         ) : null}
